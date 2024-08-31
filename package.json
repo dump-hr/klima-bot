@@ -1,0 +1,13 @@
+{
+  "name": "klima-bot",
+  "version": "1.0.0",
+  "repository": "git@github.com:dump-hr/klima-bot.git",
+  "dependencies": {
+    "@slack/bolt": "^3.21.1",
+    "dotenv": "^16.4.5",
+    "tsx": "^4.19.0"
+  },
+  "scripts": {
+    "bot": "tsx bot.ts"
+  }
+}
