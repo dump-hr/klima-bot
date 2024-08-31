@@ -5,7 +5,6 @@ import { exec } from "child_process";
 
 const run = promisify(exec);
 
-// Initializes your app with your bot token and signing secret
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -15,12 +14,8 @@ const app = new App({
 
 app.message(/upali klimu$/i, async ({ message, say }) => {
   try {
-    const { stdout, stderr } = await run(
-      "ir-ctl --send=klima-keys/POWERON -d /dev/lirc0"
-    );
-    console.log("stderr:", stderr);
-    console.log("stdout:", stdout);
-    await say(`Palim klimu! :saluting_face:`);
+    await run("ir-ctl --send=klima-keys/POWERON -d /dev/lirc0");
+    await say(`Palim klimu! :ice_cube:`);
   } catch (error) {
     console.error(error);
   }
@@ -28,11 +23,7 @@ app.message(/upali klimu$/i, async ({ message, say }) => {
 
 app.message(/ugasi klimu$/i, async ({ message, say }) => {
   try {
-    const { stdout, stderr } = await run(
-      "ir-ctl --send=klima-keys/POWEROFF -d /dev/lirc0"
-    );
-    console.log("stderr:", stderr);
-    console.log("stdout:", stdout);
+    await run("ir-ctl --send=klima-keys/POWEROFF -d /dev/lirc0");
     await say(`Gasim klimu! :saluting_face:`);
   } catch (error) {
     console.error(error);
